@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Inquilino;
 use Illuminate\Http\Request;
 
-class InquilinosController extends Controller
+class Relacion_inquilino_alquilerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $inquilinos = Inquilino::all();
-        return view('inquilinos', compact('inquilinos'));
+        //
     }
 
     /**
@@ -29,8 +27,7 @@ class InquilinosController extends Controller
      */
     public function store(Request $request)
     {
-        Inquilino::create($request->all());
-        return redirect()->back()->with('success', 'Inquilino creado correctamente.');
+        //
     }
 
     /**

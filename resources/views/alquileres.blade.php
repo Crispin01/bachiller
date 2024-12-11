@@ -8,7 +8,7 @@
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-header align-items-center d-flex">
-                        <h4 class="card-title mb-0 flex-grow-1">Inquilinos</h4>
+                        <h4 class="card-title mb-0 flex-grow-1">Alquilers</h4>
                     </div><!-- end card header -->
 
                     <!-- Default Modals -->
@@ -20,27 +20,33 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
                   </div>
                   <div class="modal-body">
-                    <form action="{{route('inquilinos.store')}}" method="POST">
+                    <form action="{{route('alquileres.store')}}" method="POST">
                       @csrf
                       <div class="form-group">
-                          <label for="exampleFormControlInput1">Nombre</label>
-                          <input type="text" name="nombre" class="form-control" placeholder="Ingrese nombre">
+                          <label for="exampleFormControlInput1">Nombre Inquilino</label>
+                          <select class="form-select mb-3" aria-label="Default select example" name="nombre_inquilino">
+                            <option selected>Seleccionar Inquilino</option>
+                            @foreach ($inquilinos as $inquilino)
+                                <option value="{{$inquilino->id_inquilino}}" >{{$inquilino->nombre}}</option>
+                            @endforeach
+                        </select>
                       </div>
                       <div class="form-group">
-                          <label for="exampleFormControlInput2">Apellido</label>
-                          <input type="text" name="apellido" class="form-control" placeholder="Ingrese apellido">
+                          <label for="exampleFormControlInput2">Nombre Cuarto</label>
+                          <select class="form-select mb-3" aria-label="Default select example" name="nombre_cuarto">
+                            <option selected>Seleccionar Cuarto</option>
+                            @foreach ($cuartos as $cuarto)
+                                <option value="{{$cuarto->id_cuarto}}" >{{$cuarto->numero_cuarto}}</option>
+                            @endforeach
+                        </select>
                       </div>
                       <div class="form-group">
-                          <label for="exampleFormControlInput3">Email</label>
-                          <input type="email" name="email" class="form-control" placeholder="Ingrese email">
+                          <label for="exampleFormControlInput3">Fecha Inicio</label>
+                          <input type="date" name="fecha_inicio" class="form-control" placeholder="Ingrese Fecha Inicio">
                       </div>
                       <div class="form-group">
-                          <label for="exampleFormControlInput4">Telefono</label>
-                          <input type="number" name="telefono" class="form-control" placeholder="Ingrese Telefono">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleFormControlInput4">DNI</label>
-                        <input type="number" name="dni" class="form-control" placeholder="Ingrese DNI">
+                          <label for="exampleFormControlInput4">Fecha Fin</label>
+                          <input type="date" name="fecha_fin" class="form-control" placeholder="Ingrese Fecha Fin">
                       </div>
                   </div>
                   <div class="modal-footer">
@@ -62,21 +68,19 @@
                                 <table class="table align-middle table-nowrap mb-0">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Nombre</th>
-                                            <th scope="col">Apellido</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Telefono</th>
-                                            <th scope="col">DNI</th>
+                                            <th scope="col">Nombre Inquilino</th>
+                                            <th scope="col">Nombre Cuarto</th>
+                                            <th scope="col">Fecha Inicio</th>
+                                            <th scope="col">Fecha Fin</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                      @foreach ($inquilinos as $inquilino)
+                                      @foreach ($alquileres as $alquiler)
                                         <tr>
-                                          <td>{{ $inquilino->nombre }}</td>
-                                          <td>{{ $inquilino->apellido }}</td>
-                                          <td>{{ $inquilino->email }}</td>
-                                          <td>{{ $inquilino->telefono }}</td>
-                                          <td>{{ $inquilino->dni }}</td>
+                                          <td>{{ $alquiler->nombre_inquilino }}</td>
+                                          <td>{{ $alquiler->nombre_cuarto }}</td>
+                                          <td>{{ $alquiler->fecha_inicio }}</td>
+                                          <td>{{ $alquiler->fecha_fin }}</td>
                                         </tr>
                                       @endforeach
                                     </tbody>

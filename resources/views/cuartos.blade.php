@@ -8,7 +8,7 @@
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-header align-items-center d-flex">
-                        <h4 class="card-title mb-0 flex-grow-1">Inquilinos</h4>
+                        <h4 class="card-title mb-0 flex-grow-1">Cuartos</h4>
                     </div><!-- end card header -->
 
                     <!-- Default Modals -->
@@ -20,27 +20,23 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
                   </div>
                   <div class="modal-body">
-                    <form action="{{route('inquilinos.store')}}" method="POST">
+                    <form action="{{route('cuartos.store')}}" method="POST">
                       @csrf
                       <div class="form-group">
-                          <label for="exampleFormControlInput1">Nombre</label>
-                          <input type="text" name="nombre" class="form-control" placeholder="Ingrese nombre">
+                          <label for="exampleFormControlInput1">Número Cuarto</label>
+                          <input type="text" name="numero_cuarto" class="form-control" placeholder="Ingrese cuarto">
                       </div>
                       <div class="form-group">
-                          <label for="exampleFormControlInput2">Apellido</label>
-                          <input type="text" name="apellido" class="form-control" placeholder="Ingrese apellido">
+                          <label for="exampleFormControlInput2">Detalles</label>
+                          <input type="text" name="detalles_cuarto" class="form-control" placeholder="Ingrese detalles">
                       </div>
                       <div class="form-group">
-                          <label for="exampleFormControlInput3">Email</label>
-                          <input type="email" name="email" class="form-control" placeholder="Ingrese email">
+                          <label for="exampleFormControlInput4">Precio</label>
+                          <input type="number" name="precio" class="form-control" placeholder="Ingrese Precio">
                       </div>
                       <div class="form-group">
-                          <label for="exampleFormControlInput4">Telefono</label>
-                          <input type="number" name="telefono" class="form-control" placeholder="Ingrese Telefono">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleFormControlInput4">DNI</label>
-                        <input type="number" name="dni" class="form-control" placeholder="Ingrese DNI">
+                        <label for="exampleFormControlInput4">Estado</label>
+                        <input type="number" name="estado" class="form-control" placeholder="Ingrese Estado">
                       </div>
                   </div>
                   <div class="modal-footer">
@@ -62,21 +58,25 @@
                                 <table class="table align-middle table-nowrap mb-0">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Nombre</th>
-                                            <th scope="col">Apellido</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Telefono</th>
-                                            <th scope="col">DNI</th>
+                                            <th scope="col">Número Cuarto</th>
+                                            <th scope="col">Detalles</th>
+                                            <th scope="col">Precio</th>
+                                            <th scope="col">Estado</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                      @foreach ($inquilinos as $inquilino)
+                                      @foreach ($cuartos as $cuarto)
                                         <tr>
-                                          <td>{{ $inquilino->nombre }}</td>
-                                          <td>{{ $inquilino->apellido }}</td>
-                                          <td>{{ $inquilino->email }}</td>
-                                          <td>{{ $inquilino->telefono }}</td>
-                                          <td>{{ $inquilino->dni }}</td>
+                                          <td>{{ $cuarto->numero_cuarto }}</td>
+                                          <td>{{ $cuarto->detalles_cuarto }}</td>
+                                          <td>{{ $cuarto->precio }}</td>
+                                            <td>
+                                                @if($cuarto->estado == 1)
+                                                  <span class="badge bg-success">Disponible</span>
+                                                @else
+                                                  <span class="badge bg-danger">Ocupado</span>
+                                                @endif
+                                            </td>
                                         </tr>
                                       @endforeach
                                     </tbody>

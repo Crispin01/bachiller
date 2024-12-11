@@ -2,18 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alquiler;
+use App\Models\Cuarto;
 use App\Models\Inquilino;
+use App\Models\Relacion_inquilino_alquiler;
 use Illuminate\Http\Request;
 
-class InquilinosController extends Controller
+class AlquilerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $cuartos = Cuarto::all();
         $inquilinos = Inquilino::all();
-        return view('inquilinos', compact('inquilinos'));
+        $alquileres = Alquiler::all();
+        return view('alquileres', compact('alquileres', 'inquilinos', 'cuartos'));
     }
 
     /**
@@ -29,8 +34,19 @@ class InquilinosController extends Controller
      */
     public function store(Request $request)
     {
-        Inquilino::create($request->all());
-        return redirect()->back()->with('success', 'Inquilino creado correctamente.');
+        $data = $request->all();
+        $alquiler = Alquiler::create([
+            'nombre_inquilino' => $data['nombre_inquilino'],
+            'nombre_cuarto' => $data['nombre_cuarto'],
+            'fecha_inicio' => $data['fecha_inicio'],
+            'fecha_fin' => $data['fecha_fin'],
+        ]);
+
+        Relacion_inquilino_alquiler::create([
+            'id_inquilino' => $data['nombre_inquilino'],
+            'id_alquiler' => $alquiler->id_alquiler,
+        ]);
+        return redirect()->back()->with('success', 'Alquiler creado correctamente.');
     }
 
     /**

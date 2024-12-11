@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('inquilinos', function (Blueprint $table) {
-            $table->id('id_inquilino');
-            $table->string('nombre');
-            $table->string('apellido');
-            $table->string('email');
-            $table->string('telefono');
-            $table->string('dni');
+        Schema::create('relacion_inquilino_alquilers', function (Blueprint $table) {
+            $table->id('id_evento');
+            $table->integer('id_inquilino');
+            $table->integer('id_alquiler');
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('inquilinos');
+        Schema::dropIfExists('relacion_inquilino_alquilers');
     }
 };

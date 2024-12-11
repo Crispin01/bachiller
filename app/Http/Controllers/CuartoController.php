@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Inquilino;
+use App\Models\Cuarto;
 use Illuminate\Http\Request;
 
-class InquilinosController extends Controller
+class CuartoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $inquilinos = Inquilino::all();
-        return view('inquilinos', compact('inquilinos'));
+        $cuartos = Cuarto::all();
+        return view('cuartos', compact('cuartos'));
     }
 
     /**
@@ -29,8 +29,8 @@ class InquilinosController extends Controller
      */
     public function store(Request $request)
     {
-        Inquilino::create($request->all());
-        return redirect()->back()->with('success', 'Inquilino creado correctamente.');
+        Cuarto::create($request->all());
+        return redirect()->back()->with('success', 'Cuarto creado correctamente.');
     }
 
     /**
