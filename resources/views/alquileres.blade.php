@@ -81,6 +81,18 @@
                                           <td>{{ $alquiler->nombre_cuarto }}</td>
                                           <td>{{ $alquiler->fecha_inicio }}</td>
                                           <td>{{ $alquiler->fecha_fin }}</td>
+                                          <td>
+                                            <ul>
+                                                @foreach ($alquiler->inquilinos as $inquilino)
+                                                    <li>
+                                                        {{ $inquilino->nombre}}
+                                                    </li>
+                                                    <li>
+                                                        {{ $inquilino->apellido }}
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                          </td>
                                         </tr>
                                       @endforeach
                                     </tbody>
