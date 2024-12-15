@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Alquiler;
 use App\Models\Cuarto;
 use App\Models\Inquilino;
+use App\Models\Relacion_cuarto_alquiler;
 use App\Models\Relacion_inquilino_alquiler;
 use Illuminate\Http\Request;
 
@@ -46,6 +47,11 @@ class AlquilerController extends Controller
             'id_inquilino' => $data['nombre_inquilino'],
             'id_alquiler' => $alquiler->id_alquiler,
         ]);
+
+        Relacion_cuarto_alquiler::create([
+            'id_cuarto' => $data['nombre_cuarto'],
+            'id_alquiler' => $alquiler->id_alquiler,
+        ]);
         return redirect()->back()->with('success', 'Alquiler creado correctamente.');
     }
 
@@ -76,8 +82,10 @@ class AlquilerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id_alquiler)
     {
-        //
+        $alquiler = Alquiler::findOrFail($id_alquiler);
+        $alquiler->delete();
+        return redirect()->back()->with('success', 'cuarto eliminado correctamente.');
     }
 }

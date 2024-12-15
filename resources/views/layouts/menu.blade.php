@@ -9,21 +9,21 @@
             <div class="d-flex">
                 <!-- LOGO -->
                 <div class="navbar-brand-box horizontal-logo">
-                    <a href="index.html" class="logo logo-dark">
+                    <a href="{{ route('dashboard') }}" class="logo logo-dark">
                         <span class="logo-sm">
-                            <img src="assets/images/logo-sm.png" alt="" height="22">
+                            <img src="assets/images/takanashi.gif" alt="" height="22">
                         </span>
                         <span class="logo-lg">
-                            <img src="assets/images/logo-dark.png" alt="" height="17">
+                            <img src="assets/images/logo-dark1.png" alt="" height="17">
                         </span>
                     </a>
 
-                    <a href="index.html" class="logo logo-light">
+                    <a href="{{ route('dashboard') }}" class="logo logo-light">
                         <span class="logo-sm">
-                            <img src="assets/images/logo-sm.png" alt="" height="22">
+                            <img src="assets/images/takanashi.gif" alt="" height="22">
                         </span>
                         <span class="logo-lg">
-                            <img src="assets/images/logo-light.png" alt="" height="17">
+                            <img src="assets/images/logo-light1.png" alt="" height="17">
                         </span>
                     </a>
                 </div>
@@ -38,22 +38,6 @@
             </div>
 
             <div class="d-flex align-items-center">
-
-                <div class="dropdown d-md-none topbar-head-dropdown header-item">
-                    <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle shadow-none" id="page-header-search-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="bx bx-search fs-22"></i>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" aria-labelledby="page-header-search-dropdown">
-                        <form class="p-3">
-                            <div class="form-group m-0">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
-                                    <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i></button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
 
                 <div class="ms-1 header-item d-none d-sm-flex">
                     <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle shadow-none" data-toggle="fullscreen">
@@ -71,19 +55,22 @@
                 <div class="dropdown ms-sm-3 header-item topbar-user">
                     <button type="button" class="btn shadow-none" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="d-flex align-items-center">
-                            <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-1.jpg" alt="Header Avatar">
+                            <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-8.jpg" alt="Header Avatar">
                             <span class="text-start ms-xl-2">
-                                <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">Anna Adame</span>
-                                <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">Founder</span>
+                                <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ Auth::user()->name }}</span>
+                                <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">Usuario</span>
                             </span>
                         </span>
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
-                        <h6 class="dropdown-header">Welcome Anna!</h6>
-                        <a class="dropdown-item" href="pages-profile.html"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Profile</span></a>
-                        <a class="dropdown-item" href="pages-profile-settings.html"><i class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Settings</span></a>
-                        <a class="dropdown-item" href="auth-logout-basic.html"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
+                        <h6 class="dropdown-header">Bienvenid@ {{ Auth::user()->name }}</h6>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                                <a class="dropdown-item" href="#" onclick="event.preventDefault(); this.closest('form').submit();">
+                                    <i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Cerrar Sesión</span>
+                                </a>
+                            </form>
                     </div>
                 </div>
             </div>
@@ -120,21 +107,21 @@
             <!-- LOGO -->
             <div class="navbar-brand-box">
                 <!-- Dark Logo-->
-                <a href="index.html" class="logo logo-dark">
+                <a href="{{ route('dashboard') }}" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="assets/images/logo-sm.png" alt="" height="22">
+                        <img src="assets/images/takanashi.gif" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="assets/images/logo-dark.png" alt="" height="17">
+                        <img src="assets/images/logo-dark1.png" alt="" height="17">
                     </span>
                 </a>
                 <!-- Light Logo-->
-                <a href="index.html" class="logo logo-light">
+                <a href="{{ route('dashboard') }}" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="assets/images/logo-sm.png" alt="" height="22">
+                        <img src="assets/images/takanashi.gif" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="assets/images/logo-light.png" alt="" height="17">
+                        <img src="assets/images/logo-light1.png" alt="" height="17">
                     </span>
                 </a>
                 <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
@@ -150,27 +137,21 @@
                     <ul class="navbar-nav" id="navbar-nav">
                         <li class="menu-title"><span data-key="t-menu">Menu</span></li>
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="#sidebarAuth" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuth">
-                                <i class="mdi mdi-account-circle-outline"></i> <span data-key="t-authentication">Authentication</span>
+                            <a class="nav-link menu-link" href="{{route('inquilinos.index')}}" role="button" aria-expanded="false" aria-controls="sidebarAuth">
+                                <i class="mdi mdi-account-circle-outline"></i> <span data-key="t-inquilinos">Inquilinos</span>
                             </a>
-                            <div class="collapse menu-dropdown" id="sidebarAuth">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="#sidebarSignIn" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarSignIn" data-key="t-signin"> Sign In
-                                        </a>
-                                        <div class="collapse menu-dropdown" id="sidebarSignIn">
-                                            <ul class="nav nav-sm flex-column">
-                                                <li class="nav-item">
-                                                    <a href="auth-signin-basic.html" class="nav-link" data-key="t-basic"> Basic </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="auth-signin-cover.html" class="nav-link" data-key="t-cover"> Cover </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+                            <a class="nav-link menu-link" href="{{route('cuartos.index')}}" role="button" aria-expanded="false" aria-controls="sidebarAuth">
+                                <i class="ri-community-line"></i> <span data-key="t-authentication">Cuartos</span>
+                            </a>
+                        </li>
+                        <li class="menu-title"><span data-key="t-detalles">Detalles</span></li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="{{route('alquileres.index')}}" role="button" aria-expanded="false" aria-controls="sidebarAuth">
+                                <i class="mdi mdi-badge-account"></i> <span data-key="t-alquileres">Alquileres</span>
+                            </a>
+                            <a class="nav-link menu-link" href="#" role="button" aria-expanded="false" aria-controls="sidebarAuth">
+                                <i class="las la-chart-bar"></i> <span data-key="t-pagos">Pagos</span>
+                            </a>
                         </li>
                     </ul>
                 </div>

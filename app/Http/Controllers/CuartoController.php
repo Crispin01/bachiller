@@ -52,16 +52,20 @@ class CuartoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id_cuarto)
     {
-        //
+        $cuarto = Cuarto::findOrFail($id_cuarto);
+        $cuarto->update($request->all());
+        return redirect()->back()->with('success', 'cuarto actualizado correctamente.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id_cuarto)
     {
-        //
+        $cuarto = Cuarto::findOrFail($id_cuarto);
+        $cuarto->delete();
+        return redirect()->back()->with('success', 'cuarto eliminado correctamente.');
     }
 }

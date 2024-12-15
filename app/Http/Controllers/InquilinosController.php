@@ -44,7 +44,7 @@ class InquilinosController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id_inquilino)
     {
         //
     }
@@ -52,16 +52,20 @@ class InquilinosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id_inquilino)
     {
-        //
+        $inquilino = Inquilino::findOrFail($id_inquilino);
+        $inquilino->update($request->all());
+        return redirect()->back()->with('success', 'Inquilino actualizado correctamente.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id_inquilino)
     {
-        //
+        $inquilino = Inquilino::findOrFail($id_inquilino);
+        $inquilino->delete();
+        return redirect()->back()->with('success', 'Inquilino eliminado correctamente.');
     }
 }

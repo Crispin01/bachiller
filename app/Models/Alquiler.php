@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use App\Models\Inquilino;
+use App\Models\Cuarto;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -19,5 +20,8 @@ class Alquiler extends Model
 
     public function inquilinos() {
         return $this->belongsToMany(Inquilino::class, 'relacion_inquilino_alquilers', 'id_alquiler' , 'id_inquilino');
+    }
+    public function cuartos() {
+        return $this->belongsToMany(Cuarto::class, 'relacion_cuarto_alquilers', 'id_alquiler' , 'id_cuarto');
     }
 }
